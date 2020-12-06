@@ -1,0 +1,14 @@
+﻿@using PMStudio.Common
+@model PMStudio.Web.ViewModels.NewFolder.IndexViewModel
+@{
+    this.ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+    <p>You have:</p>
+    <ul>
+        <li class="list-group-item">Properties under management: @Model.TotalProperties</li>
+        <li class="list-group-item">Managing @Model.TotalTenants tenants.</li>
+    </ul>
+</div>
