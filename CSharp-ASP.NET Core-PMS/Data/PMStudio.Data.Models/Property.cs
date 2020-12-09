@@ -1,11 +1,12 @@
-﻿using PMStudio.Data.Common.Models;
-using PMStudio.Data.Models.Enum;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PMStudio.Data.Models
+﻿namespace PMStudio.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using PMStudio.Data.Common.Models;
+    using PMStudio.Data.Models.Enum;
+
     public class Property : BaseDeletableModel<int>
     {
         public Property()

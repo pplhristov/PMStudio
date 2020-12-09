@@ -36,9 +36,18 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All()
+        public IActionResult All(int id=1)
         {
-            return this.View();
+            const int ItemsPerPage = 12;
+
+            var viewModel = new PropertiesListViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                PropertiesCount=this.propertiesService.GetCount(),
+                Properties = this.propertiesService.GetAll<PropertiesInListViewModel>(id, 10),
+            };
+            return this.View(viewModel);
         }
 
     }
