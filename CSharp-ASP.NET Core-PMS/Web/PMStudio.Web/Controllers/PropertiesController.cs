@@ -1,10 +1,11 @@
 ﻿namespace PMStudio.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using PMStudio.Services.Data;
     using PMStudio.Web.ViewModels;
-    using System.Threading.Tasks;
 
     public class PropertiesController : BaseController
     {
@@ -44,11 +45,25 @@
             {
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
-                PropertiesCount=this.propertiesService.GetCount(),
+                Count = this.propertiesService.GetCount(),
                 Properties = this.propertiesService.GetAll<PropertiesInListViewModel>(id, 10),
             };
             return this.View(viewModel);
         }
 
+        public IActionResult ById(int id)
+        {
+            var property = this.propertiesService.GetById<SinglePropertyViewModel>(id);
+
+            return this.View(property);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.propertiesService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }

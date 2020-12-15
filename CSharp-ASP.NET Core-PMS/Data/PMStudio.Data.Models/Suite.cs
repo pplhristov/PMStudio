@@ -1,10 +1,11 @@
-﻿using PMStudio.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PMStudio.Data.Models
+﻿namespace PMStudio.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using PMStudio.Data.Common.Models;
+
     public class Suite : BaseDeletableModel<int>
     {
         public string Name { get; set; }

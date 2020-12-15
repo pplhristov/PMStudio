@@ -1,10 +1,12 @@
-﻿using PMStudio.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PMStudio.Data.Models
+﻿namespace PMStudio.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text;
+
+    using PMStudio.Data.Common.Models;
+
     public class Tenant : BaseDeletableModel<int>
     {
         public string Name { get; set; }

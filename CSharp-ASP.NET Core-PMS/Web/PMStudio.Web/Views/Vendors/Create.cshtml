@@ -1,11 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PMStudio.Web.Views.Vendors
-{
-    public class Create
-    {
-    }
+﻿@model PMStudio.Web.ViewModels.Vendors.CreateVendorsViewModel
+@{
+    this.ViewData["Title"] = "Add vendor";
 }
+<h1>Add new vendor</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trade"></label>
+        <input asp-for="Trade" class="form-control" />
+        <span asp-validation-for="Trade" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>

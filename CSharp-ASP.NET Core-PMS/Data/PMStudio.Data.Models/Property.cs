@@ -24,6 +24,8 @@
 
         public PropertyType Type { get; set; }
 
+        public virtual Tenant Tenant { get; set; }
+
         public ICollection<MaintenanceService> MaintenanceServices { get; set; }
 
         public ICollection<Suite> Suites { get; set; }

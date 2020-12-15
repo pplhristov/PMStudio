@@ -1,13 +1,14 @@
-﻿using PMStudio.Data.Common.Repositories;
-using PMStudio.Data.Models;
-using PMStudio.Web.ViewModels.NewFolder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PMStudio.Services.Data
+﻿namespace PMStudio.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using PMStudio.Data.Common.Repositories;
+    using PMStudio.Data.Models;
+    using PMStudio.Web.ViewModels.NewFolder;
+
     public class GetTotalCounts : IGetTotalCountsService
     {
         private IDeletableEntityRepository<Property> propertiesRepository;
@@ -19,8 +20,8 @@ namespace PMStudio.Services.Data
             this.propertiesRepository = propertiesRepository;
 
             this.tenantsRepository = tenatsReposity;
-
         }
+
         public IndexViewModel GetTotalCount()
         {
             var data = new IndexViewModel

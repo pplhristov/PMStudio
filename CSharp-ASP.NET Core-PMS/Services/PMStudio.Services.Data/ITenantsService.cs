@@ -4,12 +4,11 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using PMStudio.Web.ViewModels.TenantsViewModels;
 
-    using PMStudio.Web.ViewModels;
-
-    public interface IPropertiesService
+    public interface ITenantsService
     {
-        Task CreateAsync(CreatePropertiesViewModel input);
+        Task CreateAsync(CreateTenantsViewModel input);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10);
 

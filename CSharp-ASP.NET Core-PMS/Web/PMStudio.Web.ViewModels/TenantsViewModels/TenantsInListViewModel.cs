@@ -1,15 +1,14 @@
-﻿namespace PMStudio.Web.ViewModels
+﻿namespace PMStudio.Web.ViewModels.TenantsViewModels
 {
     using PMStudio.Data.Models;
     using PMStudio.Services.Mapping;
 
-    public class PropertiesInListViewModel : IMapFrom<Property>
+    public class TenantsInListViewModel : IMapFrom<Tenant>
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public string Address { get; set; }
+        public int LeasePeriod { get; set; }
     }
 }
-

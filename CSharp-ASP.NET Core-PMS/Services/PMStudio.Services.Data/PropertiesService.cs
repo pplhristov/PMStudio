@@ -1,12 +1,13 @@
 ﻿namespace PMStudio.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using PMStudio.Data.Common.Repositories;
     using PMStudio.Data.Models;
-    using PMStudio.Web.ViewModels;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Linq;
     using PMStudio.Services.Mapping;
+    using PMStudio.Web.ViewModels;
 
     public class PropertiesService : IPropertiesService
     {
@@ -29,6 +30,13 @@
             await this.propertiesRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var property = this.propertiesRepository.All().FirstOrDefault(x => x.Id == id);
+            this.propertiesRepository.Delete(property);
+            await this.propertiesRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10)
         {
             var properties = this.propertiesRepository.AllAsNoTracking()
@@ -37,6 +45,13 @@
                 .To<T>()
                 .ToList();
             return properties;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var property = this.propertiesRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
+
+            return property;
         }
 
         public int GetCount()

@@ -54,6 +54,8 @@
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddSingleton(this.configuration);
 
             // Data repositories
@@ -67,6 +69,8 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IGetTotalCountsService, GetTotalCounts>();
             services.AddTransient<IPropertiesService, PropertiesService>();
+            services.AddTransient<ITenantsService, TenantsService>();
+            services.AddTransient<IVendorsService, VendorsService>();
 
         }
 
@@ -86,7 +90,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {

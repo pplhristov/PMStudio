@@ -10,7 +10,7 @@
     {
 	<img src="..." class="align-self-center mr-3" alt="...">
 	<div class="media-body">
-		<h5 class="mt-0">@property.Name</h5>
+        <h5 class="mt-0"><a asp-action="ById" asp-route-id="@property.Id"> @property.Name</a></h5>
 		@property.Address
 	</div>
     }
