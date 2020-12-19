@@ -1,19 +1,23 @@
-﻿@model PropertiesListViewModel 
+﻿@model PropertiesListViewModel
 @{
-	this.ViewData["Title"] = "All Properties";
+    this.ViewData["Title"] = "All Properties";
 }
 
 <h1>@this.ViewData["Title"]</h1>
 <hr />
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Properties" asp-action="Create">Add New Property</a>
+</li>
+<hr />
 <div class="row">
-	@foreach (var property in Model.Properties)
+    @foreach (var property in Model.Properties)
     {
-	<img src="..." class="align-self-center mr-3" alt="...">
-	<div class="media-body">
-        <h5 class="mt-0"><a asp-action="ById" asp-route-id="@property.Id"> @property.Name</a></h5>
-		@property.Address
-	</div>
+        <img src="..." class="align-self-center mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0"><a asp-action="ById" asp-route-id="@property.Id"> @property.Name</a></h5>
+            @property.Address
+        </div>
     }
 </div>
 <hr />
-<partial name="_PagingPartial" model="@Model"/>
+<partial name="_PagingPartial" model="@Model" />

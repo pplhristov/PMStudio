@@ -11,19 +11,23 @@
     public class TenantsService : ITenantsService
     {
         private readonly IDeletableEntityRepository<Tenant> tenantsRepository;
+        private readonly IDeletableEntityRepository<Property> propertyRepository;
 
-        public TenantsService(IDeletableEntityRepository<Tenant> tenantsRepository)
+        public TenantsService(IDeletableEntityRepository<Tenant> tenantsRepository, IDeletableEntityRepository<Property> propertyRepository)
         {
             this.tenantsRepository = tenantsRepository;
+            this.propertyRepository = propertyRepository;
         }
 
         public async Task CreateAsync(CreateTenantsViewModel input)
         {
+            var property = this.propertyRepository.All().FirstOrDefault(x => x.Name == input.Property);
             var tenant = new Tenant()
             {
                 Name = input.Name,
                 Rate = input.Rate,
                 LeasePeriod = input.LeasePeriod,
+                PropertyId = property.Id,
             };
 
             await this.tenantsRepository.AddAsync(tenant);

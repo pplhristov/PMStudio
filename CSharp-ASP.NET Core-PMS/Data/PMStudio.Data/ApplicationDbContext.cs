@@ -28,8 +28,6 @@
 
         public DbSet<Property> Properties { get; set; }
 
-        public DbSet<Suite> Suites { get; set; }
-
         public DbSet<Tenant> Tenants { get; set; }
 
         public DbSet<Vendor> Vendors { get; set; }

@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
 
     using PMStudio.Data.Common.Models;
@@ -11,24 +13,31 @@
     {
         public Property()
         {
-            this.Suites = new HashSet<Suite>();
             this.PropertyVendors = new HashSet<PropertyVendor>();
+            this.MaintenanceServices = new HashSet<MaintenanceService>();
         }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Address { get; set; }
 
-        // delete Owner
         public string Owner { get; set; }
 
+        [Required]
         public PropertyType Type { get; set; }
+
+        public int Size { get; set; }
+
+        [ForeignKey("Manager")]
+        public virtual string ManagerId { get; set; }
+
+        public virtual ApplicationUser Manager { get; set; }
 
         public virtual Tenant Tenant { get; set; }
 
         public ICollection<MaintenanceService> MaintenanceServices { get; set; }
-
-        public ICollection<Suite> Suites { get; set; }
 
         public ICollection<PropertyVendor> PropertyVendors { get; set; }
     }

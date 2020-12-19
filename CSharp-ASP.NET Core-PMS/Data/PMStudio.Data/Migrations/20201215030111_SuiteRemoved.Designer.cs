@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMStudio.Data;
 
 namespace PMStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201215030111_SuiteRemoved")]
+    partial class SuiteRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -309,7 +311,6 @@ namespace PMStudio.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -321,14 +322,10 @@ namespace PMStudio.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
@@ -343,8 +340,6 @@ namespace PMStudio.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("ManagerId");
 
                     b.ToTable("Properties");
                 });
@@ -558,15 +553,6 @@ namespace PMStudio.Data.Migrations
                     b.Navigation("Property");
                 });
 
-            modelBuilder.Entity("PMStudio.Data.Models.Property", b =>
-                {
-                    b.HasOne("PMStudio.Data.Models.ApplicationUser", "Manager")
-                        .WithMany("Properties")
-                        .HasForeignKey("ManagerId");
-
-                    b.Navigation("Manager");
-                });
-
             modelBuilder.Entity("PMStudio.Data.Models.PropertyVendor", b =>
                 {
                     b.HasOne("PMStudio.Data.Models.Property", "Property")
@@ -602,8 +588,6 @@ namespace PMStudio.Data.Migrations
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");
-
-                    b.Navigation("Properties");
 
                     b.Navigation("Roles");
                 });

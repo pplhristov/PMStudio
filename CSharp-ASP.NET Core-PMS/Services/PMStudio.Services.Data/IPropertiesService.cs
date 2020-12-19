@@ -11,12 +11,14 @@
     {
         Task CreateAsync(CreatePropertiesViewModel input);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10);
+        IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10);
 
         int GetCount();
 
         T GetById<T>(int id);
 
         Task DeleteAsync(int id);
+
+        Task EditAsync(int id, EditPropertyViewModel input);
     }
 }

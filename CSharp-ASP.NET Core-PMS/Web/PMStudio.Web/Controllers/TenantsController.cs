@@ -53,9 +53,17 @@
 
         public IActionResult ById(int id)
         {
-            var property = this.tenantsService.GetById<SingleTenantViewModel>(id);
+            var tenant = this.tenantsService.GetById<SingleTenantViewModel>(id);
 
-            return this.View(property);
+            return this.View(tenant);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.tenantsService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

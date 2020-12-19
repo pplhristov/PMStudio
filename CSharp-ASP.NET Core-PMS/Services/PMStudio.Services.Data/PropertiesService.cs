@@ -24,6 +24,9 @@
             {
                 Address = input.Address,
                 Name = input.Name,
+                Owner = input.Owner,
+                Size = input.Size,
+                ManagerId = input.ManagerId,
             };
 
             await this.propertiesRepository.AddAsync(property);
@@ -37,9 +40,21 @@
             await this.propertiesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10)
+        public async Task EditAsync(int id, EditPropertyViewModel input)
+        {
+            var property = this.propertiesRepository.All().FirstOrDefault(x => x.Id == id);
+            property.Name = input.Name;
+            property.Address = input.Address;
+            property.Owner = input.Owner;
+            property.Type = input.Type;
+            property.Size = input.Size;
+            await this.propertiesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10)
         {
             var properties = this.propertiesRepository.AllAsNoTracking()
+                .Where(p => p.ManagerId == userId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                 .To<T>()

@@ -16,5 +16,8 @@
 
         [Required]
         public int LeasePeriod { get; set; }
+
+        [Required]
+        public string Property { get; set; }
     }
 }
