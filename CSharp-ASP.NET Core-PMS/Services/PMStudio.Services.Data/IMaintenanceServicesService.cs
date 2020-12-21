@@ -4,18 +4,20 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-    using PMStudio.Web.ViewModels.TenantsViewModels;
 
-    public interface ITenantsService
+    using PMStudio.Web.ViewModels.MaintenanceServicesViewModels;
+
+    public interface IMaintenanceServicesService
     {
-        Task CreateAsync(CreateTenantsViewModel input);
+        Task CreateAsync(CreateMaintenanceServiceViewModel input);
 
-        IEnumerable<T> GetAll<T>(int page,string userId, int itemsPerPage = 10);
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10);
 
         int GetCount();
 
         T GetById<T>(int id);
 
         Task DeleteAsync(int id);
+
     }
 }

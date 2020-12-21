@@ -19,6 +19,6 @@
 
         Task DeleteAsync(int id);
 
-        Task EditAsync(int id, EditPropertyViewModel input);
+        Task EditAsync(int id, EditPropertiesViewModel input);
     }
 }

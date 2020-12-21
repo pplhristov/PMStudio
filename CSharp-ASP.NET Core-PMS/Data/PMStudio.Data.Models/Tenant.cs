@@ -18,5 +18,10 @@
         public int PropertyId { get; set; }
 
         public virtual Property Property { get; set; }
+
+        [ForeignKey("Manager")]
+        public virtual string ManagerId { get; set; }
+
+        public virtual ApplicationUser Manager { get; set; }
     }
 }

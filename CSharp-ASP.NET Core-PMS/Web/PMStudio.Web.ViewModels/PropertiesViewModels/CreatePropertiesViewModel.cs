@@ -1,10 +1,11 @@
 ﻿namespace PMStudio.Web.ViewModels
 {
-    using PMStudio.Data.Models.Enum;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
+
+    using PMStudio.Data.Models.Enum;
 
     public class CreatePropertiesViewModel
     {

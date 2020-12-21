@@ -55,6 +55,7 @@
             };
             return this.View(viewModel);
         }
+
         [Authorize]
         public IActionResult ById(int id)
         {
@@ -74,13 +75,13 @@
         [Authorize]
         public IActionResult Edit(int id)
         {
-            var editModel = this.propertiesService.GetById<EditPropertyViewModel>(id);
+            var editModel = this.propertiesService.GetById<EditPropertiesViewModel>(id);
             return this.View(editModel);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, EditPropertyViewModel input)
+        public async Task<IActionResult> Edit(int id, EditPropertiesViewModel input)
         {
             if (!this.ModelState.IsValid)
             {

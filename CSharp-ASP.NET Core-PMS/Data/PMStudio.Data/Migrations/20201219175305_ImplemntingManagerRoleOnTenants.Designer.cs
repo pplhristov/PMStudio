@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMStudio.Data;
 
 namespace PMStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201219175305_ImplemntingManagerRoleOnTenants")]
+    partial class ImplemntingManagerRoleOnTenants
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,16 +294,11 @@ namespace PMStudio.Data.Migrations
                     b.Property<DateTime>("ServiceDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("PropertyId");
-
-                    b.HasIndex("VendorId");
 
                     b.ToTable("MaintenanceServices");
                 });
@@ -565,15 +562,7 @@ namespace PMStudio.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("PMStudio.Data.Models.Vendor", "Vendor")
-                        .WithMany("MaintenanceServices")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Property");
-
-                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.Property", b =>
@@ -643,8 +632,6 @@ namespace PMStudio.Data.Migrations
 
             modelBuilder.Entity("PMStudio.Data.Models.Vendor", b =>
                 {
-                    b.Navigation("MaintenanceServices");
-
                     b.Navigation("PropertyVendors");
                 });
 #pragma warning restore 612, 618

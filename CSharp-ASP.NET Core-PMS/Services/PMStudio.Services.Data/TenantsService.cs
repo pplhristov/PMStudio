@@ -41,9 +41,10 @@
             await this.tenantsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10)
+        public IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10)
         {
                 var tenant = this.tenantsRepository.AllAsNoTracking()
+                     .Where(t => t.ManagerId == userId)
                     .OrderByDescending(x => x.Id)
                     .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                     .To<T>()

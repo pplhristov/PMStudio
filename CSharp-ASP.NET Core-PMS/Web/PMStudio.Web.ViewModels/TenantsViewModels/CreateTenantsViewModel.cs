@@ -19,5 +19,7 @@
 
         [Required]
         public string Property { get; set; }
+
+        public string ManagerId { get; set; }
     }
 }

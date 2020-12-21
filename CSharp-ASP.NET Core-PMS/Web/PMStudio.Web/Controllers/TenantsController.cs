@@ -1,5 +1,6 @@
 ﻿namespace PMStudio.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,8 @@
                 return this.View();
             }
 
+            input.ManagerId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+
             await this.tenantsService.CreateAsync(input);
 
             return this.Redirect("/");
@@ -41,12 +44,14 @@
         {
             const int ItemsPerPage = 12;
 
+            var userId = HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+
             var viewModel = new TenantsListViewModel
             {
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
                 Count = this.tenantsService.GetCount(),
-                Tenants = this.tenantsService.GetAll<TenantsInListViewModel>(id, 10),
+                Tenants = this.tenantsService.GetAll<TenantsInListViewModel>(id,userId, 10),
             };
             return this.View(viewModel);
         }

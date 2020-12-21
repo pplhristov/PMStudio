@@ -71,6 +71,7 @@
             services.AddTransient<IPropertiesService, PropertiesService>();
             services.AddTransient<ITenantsService, TenantsService>();
             services.AddTransient<IVendorsService, VendorsService>();
+            services.AddTransient<IMaintenanceServicesService, MaintenanceServicesService>();
 
         }
 

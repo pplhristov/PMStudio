@@ -11,6 +11,7 @@
         public Vendor()
         {
             this.PropertyVendors = new HashSet<PropertyVendor>();
+            this.MaintenanceServices = new HashSet<MaintenanceService>();
         }
 
         public string Name { get; set; }
@@ -24,5 +25,7 @@
         public string Phone { get; set; }
 
         public ICollection<PropertyVendor> PropertyVendors { get; set; }
+
+        public IEnumerable<MaintenanceService> MaintenanceServices { get; set; }
     }
 }

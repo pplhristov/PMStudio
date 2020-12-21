@@ -40,7 +40,7 @@
             await this.propertiesRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(int id, EditPropertyViewModel input)
+        public async Task EditAsync(int id, EditPropertiesViewModel input)
         {
             var property = this.propertiesRepository.All().FirstOrDefault(x => x.Id == id);
             property.Name = input.Name;

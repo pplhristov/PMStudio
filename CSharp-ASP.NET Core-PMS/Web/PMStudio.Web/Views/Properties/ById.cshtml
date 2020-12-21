@@ -1,6 +1,7 @@
 ﻿
 @using PMStudio.Common
 @model SinglePropertyViewModel
+
 @{
     this.ViewData["Title"] = Model.Name;
 }
@@ -8,6 +9,7 @@
 <div class="text-center">
     <h1 class="display-4">Details about @Model.Name</h1>
     <a class="nav-link text-dark" asp-area="" asp-controller="Tenants" asp-action="Create">Add Tenant</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="MaintenanceServices" asp-action="Create">Add Maintenance Service</a>
     <p>You have:</p>
     <ul>
         <li class="list-group-item">Property Name: @Model.Name</li>
@@ -15,12 +17,13 @@
         <li class="list-group-item">Property Type: @Model.Type.ToString()</li>
         <li class="list-group-item">Property Business Owner: @Model.Owner</li>
         <li class="list-group-item">Tenant: @(Model.Tenant?.Name ?? string.Empty)</li>
+        <li class="list-group-item">Monthly Rate: $@(Model.Tenant?.Rate)</li>
     </ul>
     <li class="single-meta">
         <a asp-controller="Properties" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
     </li>
     <li class="single-meta">
-        <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+        <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id"> 
         </form>
         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
     </li>
