@@ -7,10 +7,11 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Details about @Model.Name</h1>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Tenants" asp-action="Create">Add Tenant</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="MaintenanceServices" asp-action="Create">Add Maintenance Service</a>
-    <p>You have:</p>
+    <h1 class="display-4">@Model.Name</h1>
+    <div>
+        <h3 class="btn btn-primary" asp-area="" asp-controller="Tenants" asp-action="Create">Add Tenant</h3>
+    </div>
+    <h4 class="btn btn-primary" asp-area="" asp-controller="MaintenanceServices" asp-action="Create">Add Maintenance Service</h4>
     <ul>
         <li class="list-group-item">Property Name: @Model.Name</li>
         <li class="list-group-item">Property Address: @Model.Address</li>
@@ -19,14 +20,14 @@
         <li class="list-group-item">Tenant: @(Model.Tenant?.Name ?? string.Empty)</li>
         <li class="list-group-item">Monthly Rate: $@(Model.Tenant?.Rate)</li>
     </ul>
-    <li class="single-meta">
+    <div class="single-meta">
         <a asp-controller="Properties" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
-    </li>
-    <li class="single-meta">
+    </div>
+    <div class="single-meta">
         <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id"> 
         </form>
         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
-    </li>
+    </div>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog" role="document">
