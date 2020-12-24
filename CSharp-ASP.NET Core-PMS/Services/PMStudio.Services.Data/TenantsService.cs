@@ -21,13 +21,14 @@
 
         public async Task CreateAsync(CreateTenantsViewModel input)
         {
-            var property = this.propertyRepository.All().FirstOrDefault(x => x.Name == input.Property);
+           // var property = this.propertyRepository.All().FirstOrDefault(x => x.Name == input.Property);
             var tenant = new Tenant()
             {
                 Name = input.Name,
                 Rate = input.Rate,
                 LeasePeriod = input.LeasePeriod,
-                PropertyId = property.Id,
+                PropertyId = input.PropertyId,
+                ManagerId = input.ManagerId,
             };
 
             await this.tenantsRepository.AddAsync(tenant);

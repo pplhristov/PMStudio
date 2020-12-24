@@ -14,6 +14,7 @@
         public Property()
         {
             this.PropertyVendors = new HashSet<PropertyVendor>();
+            this.Images = new HashSet<Image>();
             this.MaintenanceServices = new HashSet<MaintenanceService>();
         }
 
@@ -35,9 +36,14 @@
 
         public virtual ApplicationUser Manager { get; set; }
 
+        [ForeignKey("Tenant")]
+        public virtual int? TenantId { get; set; }
+
         public virtual Tenant Tenant { get; set; }
 
         public ICollection<MaintenanceService> MaintenanceServices { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
 
         public ICollection<PropertyVendor> PropertyVendors { get; set; }
     }

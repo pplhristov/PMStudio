@@ -1,6 +1,8 @@
 ﻿namespace PMStudio.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@
 
     public class PropertiesService : IPropertiesService
     {
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Property> propertiesRepository;
 
         public PropertiesService(IDeletableEntityRepository<Property> propertiesRepository)
@@ -18,7 +21,7 @@
             this.propertiesRepository = propertiesRepository;
         }
 
-        public async Task CreateAsync(CreatePropertiesViewModel input)
+        public async Task CreateAsync(CreatePropertiesViewModel input, string imagePath)
         {
             var property = new Property()
             {
@@ -29,8 +32,37 @@
                 ManagerId = input.ManagerId,
             };
 
+            Directory.CreateDirectory(Path.Combine(imagePath, "images"));
+
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    AddedByUserId = input.ManagerId,
+                    Extension = extension,
+                };
+
+                property.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}\\images\\{dbImage.Id}.{extension}";
+
+                using (var fileStream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+            }
+
             await this.propertiesRepository.AddAsync(property);
             await this.propertiesRepository.SaveChangesAsync();
+
+            var result = property.Address;
         }
 
         public async Task DeleteAsync(int id)
@@ -69,9 +101,23 @@
             return property;
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        {
+            return this.propertiesRepository.AllAsNoTracking()
+                .Where(p => p.Tenant == null && p.IsDeleted == false)
+                .OrderBy(x => x.Name)
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name))
+                .ToList();
+        }
+
         public int GetCount()
         {
             return this.propertiesRepository.All().Count();
+        }
+
+        public bool IsPropertyWithUniqueNameAndAddress(CreatePropertiesViewModel input)
+        {
+            return this.propertiesRepository.All().Where(p => p.Address == input.Address || p.Name == input.Name) == null;
         }
     }
 }

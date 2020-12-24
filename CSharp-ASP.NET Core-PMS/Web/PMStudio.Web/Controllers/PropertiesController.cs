@@ -1,9 +1,12 @@
 ﻿namespace PMStudio.Web.Controllers
 {
+    using System;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using PMStudio.Services.Data;
     using PMStudio.Web.ViewModels;
@@ -11,8 +14,9 @@
     public class PropertiesController : BaseController
     {
         private readonly IPropertiesService propertiesService;
+        private readonly IWebHostEnvironment environment;
 
-        public PropertiesController(IPropertiesService propertiesService)
+        public PropertiesController(IPropertiesService propertiesService, IWebHostEnvironment environment)
         {
             this.propertiesService = propertiesService;
         }
@@ -28,6 +32,12 @@
         [Authorize]
         public async Task<IActionResult> Create(CreatePropertiesViewModel input)
         {
+            if (this.propertiesService.IsPropertyWithUniqueNameAndAddress(input) == false)
+            {
+                this.ModelState.AddModelError(string.Empty, "A property with this Name or Address already exists!");
+                return this.View(new ErrorViewModel());
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return View(new ErrorViewModel());
@@ -35,7 +45,15 @@
 
             input.ManagerId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
 
-            await this.propertiesService.CreateAsync(input);
+            try
+            {
+                await this.propertiesService.CreateAsync(input, $"{Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")}");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
 
             return this.Redirect("/");
         }

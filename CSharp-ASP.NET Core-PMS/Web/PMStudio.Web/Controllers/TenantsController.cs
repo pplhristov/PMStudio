@@ -11,17 +11,23 @@
     public class TenantsController : BaseController
     {
         private readonly ITenantsService tenantsService;
+        private readonly IPropertiesService propertiesService;
 
-        public TenantsController(ITenantsService tenantsService)
+        public TenantsController(ITenantsService tenantsService, IPropertiesService propertiesService)
         {
             this.tenantsService = tenantsService;
+            this.propertiesService = propertiesService;
         }
 
 
         [Authorize]
         public IActionResult Create()
         {
-            return this.View();
+            var model = new CreateTenantsViewModel();
+
+            model.PropertiesItems = this.propertiesService.GetAllAsKeyValuePairs();
+
+            return this.View(model);
         }
 
         [HttpPost]

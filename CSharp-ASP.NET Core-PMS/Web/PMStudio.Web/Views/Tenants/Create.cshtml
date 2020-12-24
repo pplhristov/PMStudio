@@ -1,6 +1,7 @@
 ﻿@model PMStudio.Web.ViewModels.TenantsViewModels.CreateTenantsViewModel
 @{
     this.ViewData["Title"] = "Add tenant";
+    var propertyItems = this.Model.PropertiesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <h1>Add new tenant</h1>
 
@@ -21,9 +22,10 @@
         <span asp-validation-for="LeasePeriod" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Property"></label>
-        <input asp-for="Property" class="form-control" />
-        <span asp-validation-for="Property" class="text-danger"></span>
-    </div>
-    <input type="submit" class="btn btn-primary" />
+        <label asp-for="PropertyId"></label>
+        @*<vc:CategoriesDropDown name="CategoryId"></vc:CategoriesDropDown>*@
+        <select asp-for="PropertyId" class="form-control" asp-items="propertyItems"></select>
+        <span asp-validation-for="PropertyId" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" />
 </form>

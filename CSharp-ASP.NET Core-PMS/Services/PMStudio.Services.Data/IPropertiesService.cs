@@ -9,7 +9,7 @@
 
     public interface IPropertiesService
     {
-        Task CreateAsync(CreatePropertiesViewModel input);
+        Task CreateAsync(CreatePropertiesViewModel input, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10);
 
@@ -20,5 +20,9 @@
         Task DeleteAsync(int id);
 
         Task EditAsync(int id, EditPropertiesViewModel input);
+
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+
+        bool IsPropertyWithUniqueNameAndAddress(CreatePropertiesViewModel input);
     }
 }

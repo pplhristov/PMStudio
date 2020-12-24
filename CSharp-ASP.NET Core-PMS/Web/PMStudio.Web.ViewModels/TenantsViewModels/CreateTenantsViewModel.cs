@@ -17,8 +17,11 @@
         [Required]
         public int LeasePeriod { get; set; }
 
-        [Required]
-        public string Property { get; set; }
+        
+        public int PropertyId { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> PropertiesItems { get; set; }
+
 
         public string ManagerId { get; set; }
     }

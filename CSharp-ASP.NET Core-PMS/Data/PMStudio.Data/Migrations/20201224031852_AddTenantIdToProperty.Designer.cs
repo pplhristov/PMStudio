@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMStudio.Data;
 
 namespace PMStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201224031852_AddTenantIdToProperty")]
+    partial class AddTenantIdToProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,7 +353,7 @@ namespace PMStudio.Data.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TenantId")
+                    b.Property<int>("TenantId")
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
@@ -364,8 +366,7 @@ namespace PMStudio.Data.Migrations
                     b.HasIndex("ManagerId");
 
                     b.HasIndex("TenantId")
-                        .IsUnique()
-                        .HasFilter("[TenantId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Properties");
                 });
@@ -609,7 +610,9 @@ namespace PMStudio.Data.Migrations
 
                     b.HasOne("PMStudio.Data.Models.Tenant", "Tenant")
                         .WithOne("Property")
-                        .HasForeignKey("PMStudio.Data.Models.Property", "TenantId");
+                        .HasForeignKey("PMStudio.Data.Models.Property", "TenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Manager");
 

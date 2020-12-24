@@ -6,7 +6,7 @@
 
     using PMStudio.Data.Common.Models;
 
-    public class Image:BaseModel<string>
+    public class Image : BaseModel<string>
     {
         public Image()
         {
@@ -15,6 +15,12 @@
 
         public int PropertyId { get; set; }
 
+        public string Extension { get; set; }
+
         public virtual Property Property { get; set; }
+
+        public string AddedByUserId { get; set; }
+
+        public ApplicationUser AddedByUser { get; set; }
     }
 }
