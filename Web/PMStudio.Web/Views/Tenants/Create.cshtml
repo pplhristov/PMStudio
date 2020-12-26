@@ -1,0 +1,31 @@
+﻿@model PMStudio.Web.ViewModels.TenantsViewModels.CreateTenantsViewModel
+@{
+    this.ViewData["Title"] = "Add tenant";
+    var propertyItems = this.Model.PropertiesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+<h1>Add new tenant</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Rate"></label>
+        <input asp-for="Rate" class="form-control" />
+        <span asp-validation-for="Rate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LeasePeriod"></label>
+        <input asp-for="LeasePeriod" class="form-control" />
+        <span asp-validation-for="LeasePeriod" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PropertyId"></label>
+        @*<vc:CategoriesDropDown name="CategoryId"></vc:CategoriesDropDown>*@
+        <select asp-for="PropertyId" class="form-control" asp-items="propertyItems"></select>
+        <span asp-validation-for="PropertyId" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" />
+</form>
