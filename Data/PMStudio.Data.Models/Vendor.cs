@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
 
     using PMStudio.Data.Common.Models;
@@ -30,6 +31,11 @@
 
         [Required]
         public string Phone { get; set; }
+
+        [ForeignKey("Manager")]
+        public virtual string ManagerId { get; set; }
+
+        public virtual ApplicationUser Manager { get; set; }
 
         public ICollection<PropertyVendor> PropertyVendors { get; set; }
 

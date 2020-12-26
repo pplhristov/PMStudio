@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMStudio.Data;
 
 namespace PMStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201226224146_InitialDataSeeding")]
+    partial class InitialDataSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -379,7 +381,6 @@ namespace PMStudio.Data.Migrations
                             Address = "100 Marguerite Ave, Unit 2, Newport Beach, CA 92660",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                             Name = "Newport Condo",
                             Owner = "WestCoast Investments",
                             Size = 0,
@@ -391,7 +392,6 @@ namespace PMStudio.Data.Migrations
                             Address = "1822 Redhill, Irvine, Ca 92112",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                             Name = "Irvine Warehouse",
                             Owner = "Logistics Solutions LLC",
                             Size = 0,
@@ -521,9 +521,6 @@ namespace PMStudio.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -543,143 +540,7 @@ namespace PMStudio.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("ManagerId");
-
                     b.ToTable("Vendors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 12,
-                            Address = "2020 Von Karman Ave, Irvine, CA 92660",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "help@cox.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Cox",
-                            Phone = "714-122-1338",
-                            Trade = "Telephones"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Address = "2020 Von Karman Ave, Irvine, CA 92660",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "help@at&t.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "AT&T",
-                            Phone = "714-511-5878",
-                            Trade = "Internet"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "1414 Von Karman Ave, Irvine, CA 92660",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "service@bestplumbing.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Best Plumbing Specialists",
-                            Phone = "714-111-4147",
-                            Trade = "Plumbing"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Address = "218 Michelson Ave, Irvine, CA 92660",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "info@cleaningcrew.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Cleaning Crew",
-                            Phone = "714-111-5151",
-                            Trade = "Cleaning"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Address = "100 12th Str, Costa Mesa, CA 92414",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "nick@fivestar.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Five Star Elevator",
-                            Phone = "914-747-1100",
-                            Trade = "Elevator Repairs"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Address = "PO Box 104, Los Angeles, CA 95114",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "moving@movingforfun.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Moving For Fun",
-                            Phone = "949-555-5511",
-                            Trade = "Moving Services"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Address = "110 Newport Dr, Newport Beach, CA 92418",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "help@pestexterminator.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "PestExterminators",
-                            Phone = "949-142-2284",
-                            Trade = "Pest Control"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Address = "22 6th Ave, Los Angeles, CA 94422",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "john@westex.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Westex",
-                            Phone = "818-521-4840",
-                            Trade = "HVAC"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Address = "22th Ave, Los Angeles, CA 94422",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "sara@modern.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Modern",
-                            Phone = "818-111-9951",
-                            Trade = "Interior Design"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Address = "2151 Baranca, Santa Ana, CA 92650",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "info@securitycontrol.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "Security Control LLC",
-                            Phone = "949-013-0103",
-                            Trade = "Alarm"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Address = "333 Marguerite, Long Beach, CA 92650",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "johnjohnson@gmail.com",
-                            IsDeleted = false,
-                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            Name = "John&John Co.",
-                            Phone = "714-214-3510",
-                            Trade = "Painting"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -804,15 +665,6 @@ namespace PMStudio.Data.Migrations
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.Tenant", b =>
-                {
-                    b.HasOne("PMStudio.Data.Models.ApplicationUser", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId");
-
-                    b.Navigation("Manager");
-                });
-
-            modelBuilder.Entity("PMStudio.Data.Models.Vendor", b =>
                 {
                     b.HasOne("PMStudio.Data.Models.ApplicationUser", "Manager")
                         .WithMany()

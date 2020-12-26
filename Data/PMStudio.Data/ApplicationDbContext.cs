@@ -86,6 +86,160 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Property>().HasData(
+                new Property
+                {
+                    Id = 1,
+                    Name = "Newport Condo",
+                    Address = "100 Marguerite Ave, Unit 2, Newport Beach, CA 92660",
+                    Owner = "WestCoast Investments",
+                    Type = 0,
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
+
+            builder.Entity<Property>().HasData(
+           new Property
+            {
+                Id = 2,
+                Name = "Irvine Warehouse",
+                Address = "1822 Redhill, Irvine, Ca 92112",
+                Owner = "Logistics Solutions LLC",
+                Type = 0,
+                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+            });
+
+            builder.Entity<Vendor>().HasData(
+               new Vendor
+               {
+                   Id = 12,
+                   Name = "Cox",
+                   Trade = "Telephones",
+                   Address = "2020 Von Karman Ave, Irvine, CA 92660",
+                   Phone = "714-122-1338",
+                   Email = "help@cox.com",
+                   ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
+            builder.Entity<Vendor>().HasData(
+                new Vendor
+                {
+                    Id = 13,
+                    Name = "AT&T",
+                    Trade = "Internet",
+                    Address = "2020 Von Karman Ave, Irvine, CA 92660",
+                    Phone = "714-511-5878",
+                    Email = "help@at&t.com",
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
+
+            builder.Entity<Vendor>().HasData(
+                new Vendor
+                {
+                    Id = 3,
+                    Name = "Best Plumbing Specialists",
+                    Trade = "Plumbing",
+                    Address = "1414 Von Karman Ave, Irvine, CA 92660",
+                    Phone = "714-111-4147",
+                    Email = "service@bestplumbing.com",
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
+
+            builder.Entity<Vendor>().HasData(
+               new Vendor
+               {
+                   Id = 4,
+                   Name = "Cleaning Crew",
+                   Trade = "Cleaning",
+                   Address = "218 Michelson Ave, Irvine, CA 92660",
+                   Phone = "714-111-5151",
+                   Email = "info@cleaningcrew.com",
+                   ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
+            builder.Entity<Vendor>().HasData(
+               new Vendor
+               {
+                   Id = 5,
+                   Name = "Five Star Elevator",
+                   Trade = "Elevator Repairs",
+                   Address = "100 12th Str, Costa Mesa, CA 92414",
+                   Phone = "914-747-1100",
+                   Email = "nick@fivestar.com",
+                   ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
+            builder.Entity<Vendor>().HasData(
+              new Vendor
+              {
+                  Id = 6,
+                  Name = "Moving For Fun",
+                  Trade = "Moving Services",
+                  Address = "PO Box 104, Los Angeles, CA 95114",
+                  Phone = "949-555-5511",
+                  Email = "moving@movingforfun.com",
+                  ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+              });
+
+            builder.Entity<Vendor>().HasData(
+             new Vendor
+             {
+                 Id = 7,
+                 Name = "PestExterminators",
+                 Trade = "Pest Control",
+                 Address = "110 Newport Dr, Newport Beach, CA 92418",
+                 Phone = "949-142-2284",
+                 Email = "help@pestexterminator.com",
+                 ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+             });
+
+            builder.Entity<Vendor>().HasData(
+            new Vendor
+            {
+                Id = 8,
+                Name = "Westex",
+                Trade = "HVAC",
+                Address = "22 6th Ave, Los Angeles, CA 94422",
+                Phone = "818-521-4840",
+                Email = "john@westex.com",
+                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+            });
+
+            builder.Entity<Vendor>().HasData(
+           new Vendor
+           {
+               Id = 9,
+               Name = "Modern",
+               Trade = "Interior Design",
+               Address = "22th Ave, Los Angeles, CA 94422",
+               Phone = "818-111-9951",
+               Email = "sara@modern.com",
+               ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+           });
+
+            builder.Entity<Vendor>().HasData(
+          new Vendor
+          {
+              Id = 10,
+              Name = "Security Control LLC",
+              Trade = "Alarm",
+              Address = "2151 Baranca, Santa Ana, CA 92650",
+              Phone = "949-013-0103",
+              Email = "info@securitycontrol.com",
+              ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+          });
+
+            builder.Entity<Vendor>().HasData(
+            new Vendor
+            {
+                Id = 11,
+                Name = "John&John Co.",
+                Trade = "Painting",
+                Address = "333 Marguerite, Long Beach, CA 92650",
+                Phone = "714-214-3510",
+                Email = "johnjohnson@gmail.com",
+                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+            });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

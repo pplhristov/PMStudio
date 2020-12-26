@@ -8,11 +8,10 @@
 
 <hr />
 <div class="row">
-    @foreach (var maintenanceService in Model.MaintenanceService)
+    foreach (var maintenanceService in Model.Name)
     {
         <div class="media-body">
-            <h5 class="mt-0"><a asp-action="ById" asp-route-id="@maintenanceService.Id"> @maintenanceService.Name</a></h5>
-            @maintenanceService.ServiceDate
+            <h5 class="mt-0"><a asp-action="ById" asp-route-id="maintenanceService.Id"> maintenanceService.Name</a></h5>
         </div>
     }
 </div>

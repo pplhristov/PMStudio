@@ -6,7 +6,10 @@
     <h1 class="display-4">Details about @Model.Name</h1>
     <ul>
         <li class="list-group-item">Tenant Name: @Model.Name</li>
-        <li class="list-group-item">Leased Property: @Model.Property.Name</li>
+        @if (Model.Property != null)
+        {
+            <li class="list-group-item">Leased Property: @Model.Property.Name</li>
+        }
         <li class="list-group-item">Tenant Rent: @Model.Rate</li>
         <li class="list-group-item">Tenant Lease Term in Months: @Model.LeasePeriod</li>
     </ul>
