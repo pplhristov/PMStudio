@@ -125,7 +125,9 @@
 
         public bool IsPropertyWithUniqueNameAndAddress(CreatePropertiesViewModel input)
         {
-            return this.propertiesRepository.All().Any(p => p.Address == input.Address || p.Name == input.Name) == false;
+            var existingPropertiesWithSameData = this.propertiesRepository.AllAsNoTracking().Count(p => p.Address == input.Address || p.Name == input.Name);
+
+            return existingPropertiesWithSameData == 0;
         }
     }
 }

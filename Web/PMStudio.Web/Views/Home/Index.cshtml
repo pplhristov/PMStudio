@@ -1,26 +1,29 @@
 ﻿@using PMStudio.Common
 @model PMStudio.Web.ViewModels.NewFolder.IndexViewModel
 @{ this.ViewData["Title"] = "Home Page"; }
-<div class="text-center" style="background-image: url('../../images/bgr.jpg')">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+<body class="text-center" style="background-image: url('../../images/bgr.jpg')">
+    <h2 class="display-4">Welcome to @GlobalConstants.SystemName!</h2>
     @if (this.User.Identity.IsAuthenticated)
     {
-<p>You have:</p>
-                <ul>
-                    <li class="list-group-item">Properties under management: @Model.TotalProperties</li>
-                    <li class="list-group-item">Managing @Model.TotalTenants tenants.</li>
+                <ul class="list-group">
+    <li class="list-group-item text-body"> You are managing:</li>
+                    <li class="list-group-item d-flex justify-content-center align-items-center text-info">
+                        Properties: <span class="badge badge-primary badge-pill"> @Model.TotalProperties</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-center align-items-center text-info">
+                        Tenants: <span class="badge badge-primary badge-pill"> @Model.TotalTenants</span>
+                    </li>
                 </ul>}
     @if (!this.User.Identity.IsAuthenticated)
     {
-
-<p class="mt-0">We are here to help you manage your properies!</p>
-                <p></p>
-                                <p>Providng simple solutions for the complex world of property management:</p>
-                                                <p>- managing properties</p>
-                                                                <p>- managing tenants</p>
-                                                                                <p>- managing vendors</p>
-                                                                                                <p>- managing maintenance services</p>
-                                                                                                                <p>- preparing reports</p>
-                                                                                                                                <p></p>
-                                                                                                                                                <p>Create your account and start managing your assets!</p>}
-</div>
+<ul class="list-group">
+    <li class="list-group-item alert-heading">We are here to help you manage your properies!</li>
+    <li class="list-group-item ">Efficient solutions for the complex world of property management:</li>
+        <li class="list-group-item list-group-item-light">- managing properties</li>
+        <li class="list-group-item list-group-item-light">- managing tenants</li>
+        <li class="list-group-item list-group-item-light">- managing vendors</li>
+        <li class="list-group-item list-group-item-light">- managing services</li>
+        <li class="list-group-item list-group-item-light">- preparing reports</li>
+    </ul>
+    <h5 class="text-center">Create your account and start managing your assets!</h5>}
+</body>

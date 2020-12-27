@@ -8,10 +8,7 @@
 
 <div class="text-center">
     <h1 class="display-4">@Model.Name</h1>
-    <div>
-        <h3 class="btn btn-primary" asp-area="" asp-controller="Tenants" asp-action="Create">Add Tenant</h3>
-    </div>
-    <h4 class="btn btn-primary" asp-area="" asp-controller="MaintenanceServices" asp-action="Create">Add Maintenance Service</h4>
+
     <ul>
         <img src="@Model.ImageUrl" class="align-self-center mr-3" alt="...">
         <li class="list-group-item">Property Name: @Model.Name</li>
