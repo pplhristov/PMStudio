@@ -90,6 +90,22 @@
 
             var passwordHasher = new PasswordHasher<ApplicationUser>();
 
+            builder.Entity<ApplicationRole>().HasData(
+                new ApplicationRole
+                {
+                    Id = "B8A39BD0-1C75-4660-9749-0B47328E0720",
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR",
+                });
+
+            builder.Entity<ApplicationRole>().HasData(
+                new ApplicationRole
+                {
+                    Id = "5F2A7EDB-703F-479D-BFF9-F19164A66E3A",
+                    Name = "User",
+                    NormalizedName = "USER",
+                });
+
             builder.Entity<ApplicationUser>().HasData(
                new ApplicationUser
                {
@@ -100,6 +116,32 @@
                    UserName = "pepibasket@yahoo.com",
                    NormalizedUserName = "PEPIBASKET@YAHOO.COM",
                    Id = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(
+               new IdentityUserRole<string>
+               {
+                   RoleId = "B8A39BD0-1C75-4660-9749-0B47328E0720",
+                   UserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
+            builder.Entity<ApplicationUser>().HasData(
+               new ApplicationUser
+               {
+                   PasswordHash = passwordHasher.HashPassword(null, "123123"),
+                   CreatedOn = DateTime.Now,
+                   Email = "vasa@gmail.com",
+                   NormalizedEmail = "VASA@GMAIL.COM",
+                   UserName = "vasa@gmail.com",
+                   NormalizedUserName = "VASA@GMAIL.COM",
+                   Id = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
+               });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(
+               new IdentityUserRole<string>
+               {
+                   RoleId = "5F2A7EDB-703F-479D-BFF9-F19164A66E3A",
+                   UserId = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
                });
 
             builder.Entity<Property>().HasData(
@@ -167,14 +209,14 @@
 
             builder.Entity<Property>().HasData(
              new Property
-            {
-                Id = 4,
-                Name = "Irvine Valley Home",
-                Address = "37 Baranca, Irvine, CA 92229",
-                Owner = "Home Properties LLC",
-                Type = 0,
-                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-            });
+             {
+                 Id = 4,
+                 Name = "Irvine Valley Home",
+                 Address = "37 Baranca, Irvine, CA 92229",
+                 Owner = "Home Properties LLC",
+                 Type = 0,
+                 ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+             });
 
             builder.Entity<Image>().HasData(
             new Image
@@ -188,14 +230,14 @@
 
             builder.Entity<Property>().HasData(
              new Property
-            {
-                Id = 5,
-                Name = "Newport Mansion",
-                Address = "37 Newport Dr, Newport Beach, CA 92879",
-                Owner = "Home Properties LLC",
-                Type = 0,
-                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-            });
+             {
+                 Id = 5,
+                 Name = "Newport Mansion",
+                 Address = "37 Newport Dr, Newport Beach, CA 92879",
+                 Owner = "Home Properties LLC",
+                 Type = 0,
+                 ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+             });
 
             builder.Entity<Image>().HasData(
             new Image
@@ -208,15 +250,15 @@
             });
 
             builder.Entity<Property>().HasData(
- new Property
- {
-     Id = 6,
-     Name = "Storage Place",
-     Address = "818 Johson Str, Long Beach, CA 81447",
-     Owner = "Rental Assets LLC",
-     Type = 0,
-     ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
- });
+                new Property
+                {
+                    Id = 6,
+                    Name = "Storage Place",
+                    Address = "818 Johson Str, Long Beach, CA 81447",
+                    Owner = "Rental Assets LLC",
+                    Type = 0,
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
 
             builder.Entity<Image>().HasData(
             new Image
@@ -227,7 +269,6 @@
                 Extension = "jpg",
                 CreatedOn = DateTime.UtcNow,
             });
-
 
             builder.Entity<Vendor>().HasData(
                new Vendor
@@ -302,73 +343,94 @@
               });
 
             builder.Entity<Vendor>().HasData(
-             new Vendor
-             {
-                 Id = 7,
-                 Name = "PestExterminators",
-                 Trade = "Pest Control",
-                 Address = "110 Newport Dr, Newport Beach, CA 92418",
-                 Phone = "949-142-2284",
-                 Email = "help@pestexterminator.com",
-                 ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-             });
+                new Vendor
+                {
+                    Id = 7,
+                    Name = "PestExterminators",
+                    Trade = "Pest Control",
+                    Address = "110 Newport Dr, Newport Beach, CA 92418",
+                    Phone = "949-142-2284",
+                    Email = "help@pestexterminator.com",
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
 
             builder.Entity<Vendor>().HasData(
-            new Vendor
-            {
-                Id = 8,
-                Name = "Westex",
-                Trade = "HVAC",
-                Address = "22 6th Ave, Los Angeles, CA 94422",
-                Phone = "818-521-4840",
-                Email = "john@westex.com",
-                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-            });
+                new Vendor
+                {
+                    Id = 8,
+                    Name = "Westex",
+                    Trade = "HVAC",
+                    Address = "22 6th Ave, Los Angeles, CA 94422",
+                    Phone = "818-521-4840",
+                    Email = "john@westex.com",
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
 
             builder.Entity<Vendor>().HasData(
-           new Vendor
-           {
-               Id = 9,
-               Name = "Modern",
-               Trade = "Interior Design",
-               Address = "22th Ave, Los Angeles, CA 94422",
-               Phone = "818-111-9951",
-               Email = "sara@modern.com",
-               ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-           });
+               new Vendor
+               {
+                   Id = 9,
+                   Name = "Modern",
+                   Trade = "Interior Design",
+                   Address = "22th Ave, Los Angeles, CA 94422",
+                   Phone = "818-111-9951",
+                   Email = "sara@modern.com",
+                   ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
 
             builder.Entity<Vendor>().HasData(
-          new Vendor
-          {
-              Id = 10,
-              Name = "Security Control LLC",
-              Trade = "Alarm",
-              Address = "2151 Baranca, Santa Ana, CA 92650",
-              Phone = "949-013-0103",
-              Email = "info@securitycontrol.com",
-              ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-          });
+              new Vendor
+              {
+                  Id = 10,
+                  Name = "Security Control LLC",
+                  Trade = "Alarm",
+                  Address = "2151 Baranca, Santa Ana, CA 92650",
+                  Phone = "949-013-0103",
+                  Email = "info@securitycontrol.com",
+                  ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+              });
 
             builder.Entity<Vendor>().HasData(
-            new Vendor
-            {
-                Id = 11,
-                Name = "John&John Co.",
-                Trade = "Painting",
-                Address = "333 Marguerite, Long Beach, CA 92650",
-                Phone = "714-214-3510",
-                Email = "johnjohnson@gmail.com",
-                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-            });
+                new Vendor
+                {
+                    Id = 11,
+                    Name = "John&John Co.",
+                    Trade = "Painting",
+                    Address = "333 Marguerite, Long Beach, CA 92650",
+                    Phone = "714-214-3510",
+                    Email = "johnjohnson@gmail.com",
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
 
             builder.Entity<MaintenanceService>().HasData(
                 new MaintenanceService
                 {
-                Id = 1,
-                PropertyId = 1,
-                VendorId = 3,
-                Name = "Bathroom repair",
-                ServiceDate = DateTime.Parse("11-06-21 10:00:00 AM"),
+                    Id = 1,
+                    PropertyId = 1,
+                    VendorId = 3,
+                    Name = "Bathroom repair",
+                    ServiceDate = DateTime.Parse("11-06-21 10:00:00 AM"),
+                });
+
+            builder.Entity<Tenant>().HasData(
+                new Tenant
+                {
+                    Id = 1,
+                    Name = "John Smith",
+                    PropertyId = 1,
+                    Rate = 3500,
+                    LeasePeriod = 12,
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                });
+            builder.Entity<Tenant>().HasData(
+                new Tenant
+                {
+                    Id = 2,
+                    Name = "Kristina Ivanova",
+                    PropertyId = 3,
+                    Rate = 1500,
+                    LeasePeriod = 16,
+                    ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                 });
         }
 

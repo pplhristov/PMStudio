@@ -10,8 +10,8 @@ using PMStudio.Data;
 namespace PMStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201227015734_InitialDataSeeding")]
-    partial class InitialDataSeeding
+    [Migration("20201227045854_DataSeeding")]
+    partial class DataSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,6 +104,18 @@ namespace PMStudio.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            RoleId = "B8A39BD0-1C75-4660-9749-0B47328E0720"
+                        },
+                        new
+                        {
+                            UserId = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
+                            RoleId = "5F2A7EDB-703F-479D-BFF9-F19164A66E3A"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -164,6 +176,26 @@ namespace PMStudio.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "B8A39BD0-1C75-4660-9749-0B47328E0720",
+                            ConcurrencyStamp = "77bfd359-1824-4f8a-a9e1-1ac844cf0ccd",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "5F2A7EDB-703F-479D-BFF9-F19164A66E3A",
+                            ConcurrencyStamp = "1f67ee81-6d21-4bfb-b4d3-abc814ae2ba4",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.ApplicationUser", b =>
@@ -249,17 +281,37 @@ namespace PMStudio.Data.Migrations
                         {
                             Id = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d67d5469-0a56-4c5b-a04d-9b231e85bb58",
-                            CreatedOn = new DateTime(2020, 12, 26, 17, 57, 33, 725, DateTimeKind.Local).AddTicks(9127),
+                            ConcurrencyStamp = "5692489b-71a5-4df7-ad0c-77e3b55b530f",
+                            CreatedOn = new DateTime(2020, 12, 26, 20, 58, 53, 119, DateTimeKind.Local).AddTicks(8677),
                             Email = "pepibasket@yahoo.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEEhRjRjvl9QY0EZ63BcvUGi3L3iwuNniU1dDKocBrLnlaSeWBzsynQmtqDK6u/KeUQ==",
+                            NormalizedEmail = "PEPIBASKET@YAHOO.COM",
+                            NormalizedUserName = "PEPIBASKET@YAHOO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHj8dN9Eb0p24FpGSZfdAtZzXG0VEzf4tgPpy9xYOGD5R/4qMCva5STZfArEw18K7A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "64ce6337-ba3b-4b4a-b768-b0eaec677421",
+                            SecurityStamp = "7e305a2f-1985-4521-86d4-864eef913498",
                             TwoFactorEnabled = false,
                             UserName = "pepibasket@yahoo.com"
+                        },
+                        new
+                        {
+                            Id = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "527bdac9-ea12-45de-9a1c-b4afbd318943",
+                            CreatedOn = new DateTime(2020, 12, 26, 20, 58, 53, 142, DateTimeKind.Local).AddTicks(4349),
+                            Email = "vasa@gmail.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "VASA@GMAIL.COM",
+                            NormalizedUserName = "VASA@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGjfOsjAaxduany0KE88wN4rU4abWkBf2IIlDgiOj/mbaF7vTTvdvckvf4anlROEYw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8b38c9e9-58cb-4143-9b69-906a28bfd791",
+                            TwoFactorEnabled = false,
+                            UserName = "vasa@gmail.com"
                         });
                 });
 
@@ -299,9 +351,49 @@ namespace PMStudio.Data.Migrations
                         {
                             Id = "d43e3dd4-4f55-4c84-92b2-94c4b84b924a",
                             AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-                            CreatedOn = new DateTime(2020, 12, 27, 1, 57, 33, 736, DateTimeKind.Utc).AddTicks(5094),
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(3338),
                             Extension = "jpg",
                             PropertyId = 1
+                        },
+                        new
+                        {
+                            Id = "8eda1d0e-0496-41b2-83bf-c9e26049f569",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(5486),
+                            Extension = "jpg",
+                            PropertyId = 2
+                        },
+                        new
+                        {
+                            Id = "1db364b0-cae7-4ba2-b5c9-19e88dc91347",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(5690),
+                            Extension = "jpg",
+                            PropertyId = 3
+                        },
+                        new
+                        {
+                            Id = "c04a661f-96be-4b9f-ab37-66a7b9e4bd2a",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(5887),
+                            Extension = "jpg",
+                            PropertyId = 4
+                        },
+                        new
+                        {
+                            Id = "31a41705-ec71-4839-8e83-a52d07574c5b",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(6144),
+                            Extension = "jpg",
+                            PropertyId = 5
+                        },
+                        new
+                        {
+                            Id = "9ff1e3ac-4af2-4fe6-9bdc-063121f86e82",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 4, 58, 53, 145, DateTimeKind.Utc).AddTicks(6331),
+                            Extension = "jpg",
+                            PropertyId = 6
                         });
                 });
 
@@ -346,6 +438,18 @@ namespace PMStudio.Data.Migrations
                     b.HasIndex("VendorId");
 
                     b.ToTable("MaintenanceServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Bathroom repair",
+                            PropertyId = 1,
+                            ServiceDate = new DateTime(2021, 11, 6, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            VendorId = 3
+                        });
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.Property", b =>
@@ -424,6 +528,54 @@ namespace PMStudio.Data.Migrations
                             ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                             Name = "Irvine Warehouse",
                             Owner = "Logistics Solutions LLC",
+                            Size = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "12252 Wood Canyon Dr., CA 92229",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "Aliso Viejo House",
+                            Owner = "Home Properties LLC",
+                            Size = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "37 Baranca, Irvine, CA 92229",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "Irvine Valley Home",
+                            Owner = "Home Properties LLC",
+                            Size = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "37 Newport Dr, Newport Beach, CA 92879",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "Newport Mansion",
+                            Owner = "Home Properties LLC",
+                            Size = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "818 Johson Str, Long Beach, CA 81447",
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "Storage Place",
+                            Owner = "Rental Assets LLC",
                             Size = 0,
                             Type = 0
                         });
@@ -525,6 +677,30 @@ namespace PMStudio.Data.Migrations
                     b.HasIndex("ManagerId");
 
                     b.ToTable("Tenants");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            LeasePeriod = 12,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "John Smith",
+                            PropertyId = 1,
+                            Rate = 3500
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            LeasePeriod = 16,
+                            ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            Name = "Kristina Ivanova",
+                            PropertyId = 3,
+                            Rate = 1500
+                        });
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.Vendor", b =>
