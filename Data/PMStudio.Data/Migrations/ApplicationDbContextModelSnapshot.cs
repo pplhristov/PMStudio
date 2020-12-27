@@ -241,6 +241,24 @@ namespace PMStudio.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d67d5469-0a56-4c5b-a04d-9b231e85bb58",
+                            CreatedOn = new DateTime(2020, 12, 26, 17, 57, 33, 725, DateTimeKind.Local).AddTicks(9127),
+                            Email = "pepibasket@yahoo.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEEhRjRjvl9QY0EZ63BcvUGi3L3iwuNniU1dDKocBrLnlaSeWBzsynQmtqDK6u/KeUQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "64ce6337-ba3b-4b4a-b768-b0eaec677421",
+                            TwoFactorEnabled = false,
+                            UserName = "pepibasket@yahoo.com"
+                        });
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.Image", b =>
@@ -273,6 +291,16 @@ namespace PMStudio.Data.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "d43e3dd4-4f55-4c84-92b2-94c4b84b924a",
+                            AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                            CreatedOn = new DateTime(2020, 12, 27, 1, 57, 33, 736, DateTimeKind.Utc).AddTicks(5094),
+                            Extension = "jpg",
+                            PropertyId = 1
+                        });
                 });
 
             modelBuilder.Entity("PMStudio.Data.Models.MaintenanceService", b =>

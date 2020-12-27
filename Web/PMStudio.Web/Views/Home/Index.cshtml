@@ -1,21 +1,17 @@
 ﻿@using PMStudio.Common
 @model PMStudio.Web.ViewModels.NewFolder.IndexViewModel
-@{
-    this.ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
+@{ this.ViewData["Title"] = "Home Page"; }
+<div class="text-center" style="background-image: url('../../images/bgr.jpg')">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <body background="~/images/074c2ac0-d249-4c38-9800-159073560243.jpg"></body>
-        @if (this.User.Identity.IsAuthenticated)
-        {
+    @if (this.User.Identity.IsAuthenticated)
+    {
 <p>You have:</p>
                 <ul>
                     <li class="list-group-item">Properties under management: @Model.TotalProperties</li>
                     <li class="list-group-item">Managing @Model.TotalTenants tenants.</li>
                 </ul>}
-        @if (!this.User.Identity.IsAuthenticated)
-        {
+    @if (!this.User.Identity.IsAuthenticated)
+    {
 
 <p class="mt-0">We are here to help you manage your properies!</p>
                 <p></p>

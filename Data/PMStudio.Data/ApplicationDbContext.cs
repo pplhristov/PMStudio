@@ -11,6 +11,7 @@
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -87,6 +88,18 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+
+            builder.Entity<ApplicationUser>().HasData(
+               new ApplicationUser
+               {
+                   PasswordHash = passwordHasher.HashPassword(null, "123456"),
+                   CreatedOn = DateTime.Now,
+                   Email = "pepibasket@yahoo.com",
+                   UserName = "pepibasket@yahoo.com",
+                   Id = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+               });
+
             builder.Entity<Property>().HasData(
                 new Property
                 {
@@ -98,16 +111,26 @@
                     ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                 });
 
+            builder.Entity<Image>().HasData(
+                new Image
+                {
+                    Id = new Guid("d43e3dd4-4f55-4c84-92b2-94c4b84b924a").ToString(),
+                    AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                    PropertyId = 1,
+                    Extension = "jpg",
+                    CreatedOn = DateTime.UtcNow,
+                });
+
             builder.Entity<Property>().HasData(
            new Property
-            {
-                Id = 2,
-                Name = "Irvine Warehouse",
-                Address = "1822 Redhill, Irvine, Ca 92112",
-                Owner = "Logistics Solutions LLC",
-                Type = 0,
-                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
-            });
+           {
+               Id = 2,
+               Name = "Irvine Warehouse",
+               Address = "1822 Redhill, Irvine, Ca 92112",
+               Owner = "Logistics Solutions LLC",
+               Type = 0,
+               ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+           });
 
             builder.Entity<Vendor>().HasData(
                new Vendor
