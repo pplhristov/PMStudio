@@ -32,7 +32,7 @@
         [Authorize]
         public async Task<IActionResult> Create(CreatePropertiesViewModel input)
         {
-            if (this.propertiesService.IsPropertyWithUniqueNameAndAddress(input) == true)
+            if (this.propertiesService.IsPropertyWithUniqueNameAndAddress(input))
             {
                 this.ModelState.AddModelError(string.Empty, "A property with this Name or Address already exists!");
                 return this.View(input);

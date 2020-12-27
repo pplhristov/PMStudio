@@ -41,9 +41,10 @@
             await this.vendorsRepository.SaveChangesAsync();
         }
 
-      public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10)
+      public IEnumerable<T> GetAll<T>(int page, string managerId, int itemsPerPage = 10)
         {
             var vendors = this.vendorsRepository.AllAsNoTracking()
+                .Where(v => v.ManagerId == managerId)
                .OrderByDescending(x => x.Id)
                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                .To<T>()

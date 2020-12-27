@@ -96,7 +96,9 @@
                    PasswordHash = passwordHasher.HashPassword(null, "123456"),
                    CreatedOn = DateTime.Now,
                    Email = "pepibasket@yahoo.com",
+                   NormalizedEmail = "PEPIBASKET@YAHOO.COM",
                    UserName = "pepibasket@yahoo.com",
+                   NormalizedUserName = "PEPIBASKET@YAHOO.COM",
                    Id = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                });
 
@@ -131,6 +133,101 @@
                Type = 0,
                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
            });
+
+            builder.Entity<Image>().HasData(
+               new Image
+               {
+                   Id = new Guid("8eda1d0e-0496-41b2-83bf-c9e26049f569").ToString(),
+                   AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                   PropertyId = 2,
+                   Extension = "jpg",
+                   CreatedOn = DateTime.UtcNow,
+               });
+
+            builder.Entity<Property>().HasData(
+         new Property
+         {
+             Id = 3,
+             Name = "Aliso Viejo House",
+             Address = "12252 Wood Canyon Dr., CA 92229",
+             Owner = "Home Properties LLC",
+             Type = 0,
+             ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+         });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("1db364b0-cae7-4ba2-b5c9-19e88dc91347").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 3,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
+            builder.Entity<Property>().HasData(
+             new Property
+            {
+                Id = 4,
+                Name = "Irvine Valley Home",
+                Address = "37 Baranca, Irvine, CA 92229",
+                Owner = "Home Properties LLC",
+                Type = 0,
+                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+            });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("C04A661F-96BE-4B9F-AB37-66A7B9E4BD2A").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 4,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
+            builder.Entity<Property>().HasData(
+             new Property
+            {
+                Id = 5,
+                Name = "Newport Mansion",
+                Address = "37 Newport Dr, Newport Beach, CA 92879",
+                Owner = "Home Properties LLC",
+                Type = 0,
+                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+            });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("31A41705-EC71-4839-8E83-A52D07574C5B").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 5,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
+            builder.Entity<Property>().HasData(
+ new Property
+ {
+     Id = 6,
+     Name = "Storage Place",
+     Address = "818 Johson Str, Long Beach, CA 81447",
+     Owner = "Rental Assets LLC",
+     Type = 0,
+     ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+ });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("9FF1E3AC-4AF2-4FE6-9BDC-063121F86E82").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 6,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
 
             builder.Entity<Vendor>().HasData(
                new Vendor
@@ -263,6 +360,16 @@
                 Email = "johnjohnson@gmail.com",
                 ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
             });
+
+            builder.Entity<MaintenanceService>().HasData(
+                new MaintenanceService
+                {
+                Id = 1,
+                PropertyId = 1,
+                VendorId = 3,
+                Name = "Bathroom repair",
+                ServiceDate = DateTime.Parse("11-06-21 10:00:00 AM"),
+                });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

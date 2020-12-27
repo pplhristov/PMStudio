@@ -1,7 +1,7 @@
 ﻿namespace PMStudio.Web.Controllers
 {
     using System.Diagnostics;
-
+    using System.Linq;
     using Microsoft.AspNetCore.Mvc;
     using PMStudio.Services.Data;
     using PMStudio.Web.ViewModels;
@@ -17,7 +17,9 @@
 
         public IActionResult Index()
         {
-            var viewModel = this.countsService.GetTotalCount();
+            var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type.Contains("nameidentifier"))?.Value;
+
+            var viewModel = this.countsService.GetTotalCount(userId);
 
             return this.View(viewModel);
         }

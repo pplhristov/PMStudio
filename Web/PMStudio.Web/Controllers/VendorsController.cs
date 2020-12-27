@@ -44,12 +44,14 @@
         {
             const int ItemsPerPage = 12;
 
+            var userId = HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+
             var viewModel = new VendorsListViewModel
             {
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
                 Count = this.vendorsService.GetCount(),
-                Vendors = this.vendorsService.GetAll<VendorsInListViewModel>(id, 10),
+                Vendors = this.vendorsService.GetAll<VendorsInListViewModel>(id, userId, 10),
             };
             return this.View(viewModel);
         }

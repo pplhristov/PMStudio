@@ -10,7 +10,7 @@ namespace PMStudio.Services.Data
     {
         Task CreateAsync(CreateVendorsViewModel input);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10);
+        IEnumerable<T> GetAll<T>(int page, string managerId, int itemsPerPage = 10);
 
         int GetCount();
 

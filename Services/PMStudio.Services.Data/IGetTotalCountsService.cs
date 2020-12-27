@@ -7,6 +7,6 @@ namespace PMStudio.Services.Data
 {
     public interface IGetTotalCountsService
     {
-        IndexViewModel GetTotalCount();
+        IndexViewModel GetTotalCount(string userId);
     }
 }

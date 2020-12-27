@@ -22,13 +22,15 @@
             this.tenantsRepository = tenatsReposity;
         }
 
-        public IndexViewModel GetTotalCount()
+        public IndexViewModel GetTotalCount(string managerId)
         {
             var data = new IndexViewModel
             {
-                TotalProperties = this.propertiesRepository.All().Count(),
+                TotalProperties = this.propertiesRepository.AllAsNoTracking()
+                .Where(p => p.ManagerId == managerId)?.Count() ?? 0,
 
-                TotalTenants = this.tenantsRepository.All().Count(),
+                TotalTenants = this.tenantsRepository.AllAsNoTracking()
+                .Where(p => p.ManagerId == managerId)?.Count() ?? 0,
             };
 
             return data;
