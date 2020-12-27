@@ -11,7 +11,7 @@
     {
         Task CreateAsync(CreateMaintenanceServiceViewModel input);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10);
+        IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10);
 
         int GetCount();
 

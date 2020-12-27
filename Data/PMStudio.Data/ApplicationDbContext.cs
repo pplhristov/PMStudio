@@ -172,7 +172,7 @@
                Name = "Irvine Warehouse",
                Address = "1822 Redhill, Irvine, Ca 92112",
                Owner = "Logistics Solutions LLC",
-               Type = 0,
+               Type = Models.Enum.PropertyType.Commercial,
                ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
            });
 

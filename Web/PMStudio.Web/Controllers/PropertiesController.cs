@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using PMStudio.Services.Data;
     using PMStudio.Web.ViewModels;
@@ -14,13 +13,11 @@
     public class PropertiesController : BaseController
     {
         private readonly IPropertiesService propertiesService;
-        private readonly IWebHostEnvironment environment;
 
-        public PropertiesController(IPropertiesService propertiesService, IWebHostEnvironment environment)
+        public PropertiesController(IPropertiesService propertiesService)
         {
             this.propertiesService = propertiesService;
         }
-
 
         [Authorize]
         public IActionResult Create()
@@ -40,7 +37,7 @@
 
             if (!this.ModelState.IsValid)
             {
-                return View(input);
+                return this.View(input);
             }
 
             input.ManagerId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
@@ -58,20 +55,27 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id=1)
+        public IActionResult All(int id = 1)
         {
-            const int ItemsPerPage = 12;
-
-            var userId = HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-
-            var viewModel = new PropertiesListViewModel
+            try
             {
-                ItemsPerPage = ItemsPerPage,
-                PageNumber = id,
-                Count = this.propertiesService.GetCount(),
-                Properties = this.propertiesService.GetAll<PropertiesInListViewModel>(id, userId, 10),
-            };
-            return this.View(viewModel);
+                const int ItemsPerPage = 12;
+
+                var userId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+
+                var viewModel = new PropertiesListViewModel
+                {
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = id,
+                    Count = this.propertiesService.GetCount(),
+                    Properties = this.propertiesService.GetAll<PropertiesInListViewModel>(id, userId, 10),
+                };
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return this.View("Error", new ErrorViewModel { RequestId = ex.Message });
+            }
         }
 
         [Authorize]
@@ -108,7 +112,7 @@
 
             await this.propertiesService.EditAsync(id, input);
 
-            return RedirectToAction(nameof(this.ById), new { id });
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
     }
 }

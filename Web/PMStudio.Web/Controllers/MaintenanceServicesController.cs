@@ -57,7 +57,7 @@
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
                 Count = this.maintenanceServicesService.GetCount(),
-                MaintenanceServices = this.maintenanceServicesService.GetAll<MaintenanceServicesInListViewModel>(id, 10),
+                MaintenanceServices = this.maintenanceServicesService.GetAll<MaintenanceServicesInListViewModel>(id, userId, 10),
             };
             return this.View(viewModel);
         }

@@ -4,20 +4,28 @@
     using PMStudio.Web.ViewModels.Administration.Dashboard;
 
     using Microsoft.AspNetCore.Mvc;
+    using PMStudio.Data.Common.Repositories;
+    using PMStudio.Data.Models;
 
     public class DashboardController : AdministrationController
     {
-        private readonly ISettingsService settingsService;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IDeletableEntityRepository<ApplicationRole> rolesRepository;
 
-        public DashboardController(ISettingsService settingsService)
+        public DashboardController(IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IDeletableEntityRepository<ApplicationRole> rolesRepository)
         {
-            this.settingsService = settingsService;
+            this.usersRepository = usersRepository;
+            this.rolesRepository = rolesRepository;
         }
 
         public IActionResult Index()
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
-            return this.View(viewModel);
+            var users = this.usersRepository.AllAsNoTracking();
+            var roles = this.rolesRepository.AllAsNoTracking();
+
+
+            return this.View();
         }
     }
 }

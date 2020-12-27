@@ -47,9 +47,10 @@
         }
 
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 10)
+        public IEnumerable<T> GetAll<T>(int page, string managerId, int itemsPerPage = 10)
         {
             var maintenanceService = this.maintenanceServicesRepository.AllAsNoTracking()
+                .Where(ms => ms.Property.ManagerId == managerId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                 .To<T>()
