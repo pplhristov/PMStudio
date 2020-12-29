@@ -13,7 +13,7 @@
     @foreach (var maintenanceService in Model.MaintenanceServices)
     {
         <div class="media-body">
-            <h5 class="mt-0"><a asp-action="ById" asp-route-id="@maintenanceService.Id"> @maintenanceService.Name</a></h5>
+            <h5 class="mt-0"> @maintenanceService.Name</h5>
             <div>Scheduled date: @maintenanceService.ServiceDate</div>
             <div>Property: @maintenanceService.Property.Name</div>
             <div>Vendor: @maintenanceService.Vendor.Name</div>

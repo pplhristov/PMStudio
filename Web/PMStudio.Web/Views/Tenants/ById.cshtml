@@ -13,11 +13,11 @@
         <li class="list-group-item">Tenant Rent: @Model.Rate</li>
         <li class="list-group-item">Tenant Lease Term in Months: @Model.LeasePeriod</li>
     </ul>
-    <li class="single-meta">
+    <div class="single-meta">
         <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
         </form>
         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
-    </li>
+    </div>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog" role="document">

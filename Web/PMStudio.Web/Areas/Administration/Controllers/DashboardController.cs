@@ -11,9 +11,10 @@
     {
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<ApplicationRole> rolesRepository;
-
-        public DashboardController(IDeletableEntityRepository<ApplicationUser> usersRepository,
-            IDeletableEntityRepository<ApplicationRole> rolesRepository)
+        public DashboardController(
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IDeletableEntityRepository<ApplicationRole> rolesRepository
+            )
         {
             this.usersRepository = usersRepository;
             this.rolesRepository = rolesRepository;
@@ -25,7 +26,13 @@
             var roles = this.rolesRepository.AllAsNoTracking();
 
 
-            return this.View();
+            var viewModel = new IndexViewModel
+            {
+                Users = users,
+                Roles = roles,
+
+            };
+            return this.View(viewModel);
         }
     }
 }

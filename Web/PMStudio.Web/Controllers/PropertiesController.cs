@@ -81,9 +81,16 @@
         [Authorize]
         public IActionResult ById(int id)
         {
-            var property = this.propertiesService.GetById<SinglePropertyViewModel>(id);
+            try
+            {
+                var property = this.propertiesService.GetById<SinglePropertyViewModel>(id);
 
-            return this.View(property);
+                return this.View(property);
+            }
+            catch (Exception ex)
+            {
+                return this.View("Error", new ErrorViewModel { RequestId = ex.Message });
+            }
         }
 
         [Authorize]
@@ -110,9 +117,16 @@
                 return this.View();
             }
 
-            await this.propertiesService.EditAsync(id, input);
+            try
+            {
+                await this.propertiesService.EditAsync(id, input);
 
-            return this.RedirectToAction(nameof(this.ById), new { id });
+                return this.RedirectToAction(nameof(this.ById), new { id });
+            }
+            catch (Exception ex)
+            {
+                return this.View("Error", new ErrorViewModel { RequestId = ex.Message });
+            }
         }
     }
 }

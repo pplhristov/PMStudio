@@ -28,6 +28,7 @@
                 Trade = input.Trade,
                 Phone = input.Phone,
                 Email = input.Email,
+                ManagerId = input.ManagerId,
             };
 
             await this.vendorsRepository.AddAsync(vendor);

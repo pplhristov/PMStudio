@@ -270,6 +270,48 @@
                 CreatedOn = DateTime.UtcNow,
             });
 
+            builder.Entity<Property>().HasData(
+            new Property
+            {
+                Id = 7,
+                Name = "Grandview Boston",
+                Address = "2 Avery, Boston, NA 40115",
+                Owner = "Rental Assets LLC",
+                Type = 0,
+                ManagerId = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
+            });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("70383C88-03D2-477C-8F93-91611158F251").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 7,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
+            builder.Entity<Property>().HasData(
+            new Property
+            {
+                Id = 8,
+                Name = "San Clemente Warehouse",
+                Address = "101 Cliff Dr, San Clemente, CA 90512",
+                Owner = "Logistic Solutics LLC",
+                Type = 0,
+                ManagerId = "B20F8CEE-4341-46CC-84F7-FB75D269A2E4",
+            });
+
+            builder.Entity<Image>().HasData(
+            new Image
+            {
+                Id = new Guid("21DAD2A8-499B-479F-85A9-F0344EAA31DC").ToString(),
+                AddedByUserId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
+                PropertyId = 8,
+                Extension = "jpg",
+                CreatedOn = DateTime.UtcNow,
+            });
+
             builder.Entity<Vendor>().HasData(
                new Vendor
                {
@@ -432,6 +474,8 @@
                     LeasePeriod = 16,
                     ManagerId = "088bbcf3-2259-4570-93b8-cffbf7a064e5",
                 });
+
+
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
