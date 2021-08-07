@@ -5,13 +5,11 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using PMStudio.Data.Common.Models;
-    using PMStudio.Data.Models;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
+    using PMStudio.Data.Common.Models;
+    using PMStudio.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
