@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using PMStudio.Data.Common.Repositories;
     using PMStudio.Data.Models;
     using PMStudio.Services.Mapping;
@@ -21,7 +22,7 @@
 
         public async Task CreateAsync(CreateTenantsViewModel input)
         {
-           var property = this.propertyRepository.All().FirstOrDefault(x => x.Id == input.PropertyId);
+            var property = this.propertyRepository.All().FirstOrDefault(x => x.Id == input.PropertyId);
 
             var tenant = new Tenant()
             {
@@ -45,13 +46,13 @@
 
         public IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10)
         {
-                var tenant = this.tenantsRepository.AllAsNoTracking()
-                     .Where(t => t.ManagerId == userId)
-                    .OrderByDescending(x => x.Id)
-                    .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                    .To<T>()
-                    .ToList();
-                return tenant;
+            var tenant = this.tenantsRepository.AllAsNoTracking()
+                 .Where(t => t.ManagerId == userId)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+            return tenant;
         }
 
         public T GetById<T>(int id)
