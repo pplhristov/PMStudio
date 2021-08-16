@@ -98,7 +98,6 @@ namespace PMStudio.Services.Data.Tests
             Assert.Equal(propertyName, property.Name);
         }
 
-
         [Fact]
         public async Task DeleteShouldDeleteTheCorrectProperty()
         {
@@ -106,7 +105,7 @@ namespace PMStudio.Services.Data.Tests
                 .UseInMemoryDatabase(databaseName: "DeletePropertiesTestDb").Options;
             using var dbContext = new ApplicationDbContext(options);
 
-            var propertyId = 5;
+            var propertyId = 4;
             var propertyName = $"Property with ID {propertyId}";
 
             dbContext.Properties.Add(new Property()
@@ -126,6 +125,41 @@ namespace PMStudio.Services.Data.Tests
             var countAfter = dbContext.Properties.Count();
 
             Assert.Equal(countBefore, countAfter + 1);
+        }
+
+        [Fact]
+        public async Task EditShouldSucceed()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "EditPropertiesTestDb").Options;
+            using var dbContext = new ApplicationDbContext(options);
+
+            var propertyId = 5;
+            var propertyName = $"Property with ID {propertyId}";
+
+            dbContext.Properties.Add(new Property()
+            {
+                Id = propertyId,
+                Name = propertyName,
+            });
+            await dbContext.SaveChangesAsync();
+
+            using var propertyRepository = new EfDeletableEntityRepository<Property>(dbContext);
+            var propertiesService = new PropertiesService(propertyRepository);
+
+            var editedName = $"Edited Property with ID {propertyId}";
+
+            var model = new EditPropertiesViewModel()
+            {
+                Name = editedName,
+            };
+
+            var property = propertiesService.EditAsync(propertyId, model);
+
+            var editedPropety = dbContext.Properties.FirstOrDefault(p => p.Id == propertyId);
+
+            Assert.NotNull(editedPropety);
+            Assert.Equal(editedName, editedPropety.Name);
         }
     }
 }
