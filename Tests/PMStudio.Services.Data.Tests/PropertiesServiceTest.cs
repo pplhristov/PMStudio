@@ -87,6 +87,7 @@ namespace PMStudio.Services.Data.Tests
                 Owner = "Test owner",
                 Tenant = tenant,
                 ModifiedOn = DateTime.Now.AddDays(+1),
+                Size = 500,
             });
             await dbContext.SaveChangesAsync();
 
@@ -95,6 +96,36 @@ namespace PMStudio.Services.Data.Tests
             var property = propertiesService.GetById<SinglePropertyViewModel>(propertyId);
 
             Assert.Equal(propertyName, property.Name);
+        }
+
+
+        [Fact]
+        public async Task DeleteShouldDeleteTheCorrectProperty()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "DeletePropertiesTestDb").Options;
+            using var dbContext = new ApplicationDbContext(options);
+
+            var propertyId = 5;
+            var propertyName = $"Property with ID {propertyId}";
+
+            dbContext.Properties.Add(new Property()
+            {
+                Id = propertyId,
+                Name = propertyName,
+            });
+            await dbContext.SaveChangesAsync();
+
+            using var propertyRepository = new EfDeletableEntityRepository<Property>(dbContext);
+            var propertiesService = new PropertiesService(propertyRepository);
+
+            var countBefore = dbContext.Properties.Count();
+
+            var property = propertiesService.DeleteAsync(propertyId);
+
+            var countAfter = dbContext.Properties.Count();
+
+            Assert.Equal(countBefore, countAfter + 1);
         }
     }
 }
