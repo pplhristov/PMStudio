@@ -50,5 +50,33 @@ namespace PMStudio.Services.Data.Tests
 
             Assert.NotNull(createdModel);
         }
+
+        [Fact]
+        public async Task DeleteShouldDeleteTheCorrectVendor()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "DeleteVendorsTestDb").Options;
+            using var dbContext = new ApplicationDbContext(options);
+            using var vendorRepository = new EfDeletableEntityRepository<Vendor>(dbContext);
+            var vendorsService = new VendorsService(vendorRepository);
+
+            var vendorId = 3;
+            var vendorName = "Best Plumbing";
+
+            dbContext.Vendors.Add(new Vendor()
+            {
+                Id = vendorId,
+                Name = vendorName,
+            });
+            await dbContext.SaveChangesAsync();
+
+            var countBefore = dbContext.Vendors.Count();
+
+            var vendor = vendorsService.DeleteAsync(vendorId);
+
+            var countAfter = dbContext.Vendors.Count();
+
+            Assert.Equal(countBefore, countAfter + 1);
+        }
     }
 }
