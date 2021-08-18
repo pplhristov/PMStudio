@@ -6,12 +6,12 @@
     @if (this.User.Identity.IsAuthenticated)
     {
                 <ul class="list-group">
-    <li class="list-group-item text-body"> You are managing:</li>
+                   <h4 class="align-content-md-center"> You are managing:</h4>
                     <li class="list-group-item d-flex justify-content-center align-items-center text-info">
-                        Properties: <span class="badge badge-primary badge-pill"> @Model.TotalProperties</span>
+                        Properties:   <span class="badge badge-primary badge-pill">@Model.TotalProperties</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-center align-items-center text-info">
-                        Tenants: <span class="badge badge-primary badge-pill"> @Model.TotalTenants</span>
+                        Tenants:   <span class="badge badge-primary badge-pill">@Model.TotalTenants</span>
                     </li>
                 </ul>}
     @if (!this.User.Identity.IsAuthenticated)
