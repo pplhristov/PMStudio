@@ -43,14 +43,14 @@ namespace PMStudio.Services.Data.Tests
 
             var model = new CreateTenantsViewModel()
             {
-                Name = "Test",
+                Name = "Peter",
                 Rate = 1800,
                 LeasePeriod = 12,
             };
 
             await tenantsService.CreateAsync(model);
 
-            var createdModel = dbContext.Tenants.FirstOrDefault(p => p.Name == "Test");
+            var createdModel = dbContext.Tenants.FirstOrDefault(p => p.Name == "Peter");
 
             Assert.NotNull(createdModel);
         }

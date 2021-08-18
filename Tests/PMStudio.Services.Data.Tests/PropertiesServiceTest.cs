@@ -42,9 +42,9 @@ namespace PMStudio.Services.Data.Tests
 
             var model = new CreatePropertiesViewModel()
             {
-                Address = "Test",
-                Name = "Test",
-                Owner = "Owner",
+                Address = "33300 Main st",
+                Name = "Peter",
+                Owner = "Ivan Ivanov",
                 Size = 110,
                 Type = PMStudio.Data.Models.Enum.PropertyType.Residential,
                 Images = new List<IFormFile>(),
@@ -52,7 +52,7 @@ namespace PMStudio.Services.Data.Tests
 
             await propertiesService.CreateAsync(model, @"C:\PM.Studio.Images");
 
-            var createdModel = dbContext.Properties.FirstOrDefault(p => p.Name == "Test");
+            var createdModel = dbContext.Properties.FirstOrDefault(p => p.Name == "Peter");
 
             Assert.NotNull(createdModel);
         }

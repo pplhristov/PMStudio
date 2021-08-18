@@ -8,6 +8,7 @@
     using PMStudio.Data.Common.Repositories;
 
     using Microsoft.EntityFrameworkCore;
+    using PMStudio.Web.ViewModels.Vendors;
 
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
@@ -45,6 +46,11 @@
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.UtcNow;
             this.Update(entity);
+        }
+
+        public Task CreateAsync(CreateVendorsViewModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
