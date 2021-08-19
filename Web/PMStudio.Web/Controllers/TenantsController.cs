@@ -28,9 +28,9 @@
             var model = new CreateTenantsViewModel();
             try
             {
-            model.PropertiesItems = this.propertiesService.GetAllAsKeyValuePairs();
+                model.PropertiesItems = this.propertiesService.GetAllAsKeyValuePairs();
 
-            return this.View(model);
+                return this.View(model);
 
             }
             catch (Exception ex)
@@ -51,11 +51,11 @@
 
             try
             {
-            input.ManagerId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+                input.ManagerId = this.HttpContext.User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
 
-            await this.tenantsService.CreateAsync(input);
+                await this.tenantsService.CreateAsync(input);
 
-            return this.Redirect("/");
+                return this.Redirect("/");
             }
             catch (Exception ex)
             {
@@ -91,9 +91,9 @@
         {
             try
             {
-            var tenant = this.tenantsService.GetById<SingleTenantViewModel>(id);
+                var tenant = this.tenantsService.GetById<SingleTenantViewModel>(id);
 
-            return this.View(tenant);
+                return this.View(tenant);
             }
             catch (Exception ex)
             {
@@ -107,6 +107,35 @@
         {
             await this.tenantsService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
+        }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+                var editModel = this.tenantsService.GetById<EditTenantsViewModel>(id);
+                //editModel.PropertiesItems = this.propertiesService.GetAllAsKeyValuePairs();
+                return this.View(editModel);
+        }
+    
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditTenantsViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            try
+            {
+                await this.tenantsService.EditAsync(id, input);
+
+                return this.RedirectToAction(nameof(this.ById), new { id });
+            }
+            catch (Exception ex)
+            {
+                return this.View("Error", new ErrorViewModel { RequestId = ex.Message });
+            }
         }
     }
 }

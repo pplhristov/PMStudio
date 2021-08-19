@@ -44,6 +44,18 @@
             await this.tenantsRepository.SaveChangesAsync();
         }
 
+        public async Task EditAsync(int id, EditTenantsViewModel input)
+        {
+            var tenant = this.tenantsRepository.All().FirstOrDefault(t => t.Id == id);
+            //var property = this.propertyRepository.All().FirstOrDefault(p => p.Id == input.PropertyId);
+            tenant.Name = input.Name;
+            tenant.LeasePeriod = input.LeasePeriod;
+            tenant.Rate = input.Rate;
+            //tenant.PropertyId = input.PropertyId;
+            //tenant.Property = property;
+            await this.tenantsRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, string userId, int itemsPerPage = 10)
         {
             var tenant = this.tenantsRepository.AllAsNoTracking()

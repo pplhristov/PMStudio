@@ -16,6 +16,8 @@
 
         T GetById<T>(int id);
 
+        Task EditAsync(int id, EditTenantsViewModel input);
+
         Task DeleteAsync(int id);
     }
 }

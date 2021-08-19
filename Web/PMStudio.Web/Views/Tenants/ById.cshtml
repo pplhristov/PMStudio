@@ -8,11 +8,13 @@
         <li class="list-group-item">Tenant Name: @Model.Name</li>
         @if (Model.Property != null)
         {
-            <li class="list-group-item">Leased Property: @Model.Property.Name</li>
-        }
+<li class="list-group-item">Leased Property: @Model.Property.Name</li>}
         <li class="list-group-item">Tenant Rent: @Model.Rate</li>
         <li class="list-group-item">Tenant Lease Term in Months: @Model.LeasePeriod</li>
     </ul>
+    <div class="single-meta">
+        <a asp-controller="Tenants" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+    </div>
     <div class="single-meta">
         <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
         </form>
