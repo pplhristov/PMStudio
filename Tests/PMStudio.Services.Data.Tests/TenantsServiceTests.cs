@@ -54,5 +54,41 @@ namespace PMStudio.Services.Data.Tests
 
             Assert.NotNull(createdModel);
         }
+
+        [Fact]
+        public async Task EditShouldSucceed()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "EditTenantsTestDb").Options;
+            using var dbContext = new ApplicationDbContext(options);
+
+            var tenantId = 5;
+            var tenantName = "Ivan Ivanov";
+
+            dbContext.Tenants.Add(new Tenant()
+            {
+                Id = tenantId,
+                Name = tenantName,
+            });
+            await dbContext.SaveChangesAsync();
+
+            using var tenantRepository = new EfDeletableEntityRepository<Tenant>(dbContext);
+            using var propertyRepository = new EfDeletableEntityRepository<Property>(dbContext);
+            var tenantService = new TenantsService(tenantRepository, propertyRepository);
+
+            var editedName = "Petar Petrov";
+
+            var model = new EditTenantsViewModel()
+            {
+                Name = editedName,
+            };
+
+            var tenant = tenantService.EditAsync(tenantId, model);
+
+            var editedTenant = dbContext.Tenants.FirstOrDefault(t => t.Id == tenantId);
+
+            Assert.NotNull(editedTenant);
+            Assert.Equal(editedName, editedTenant.Name);
+        }
     }
 }
